@@ -8,6 +8,8 @@
 	<string>com.djangowong.LaunchBar.action.GoogleTranslate</string>
 	<key>CFBundleName</key>
 	<string>Google Translate</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1</string>
 	<key>LBAbbreviation</key>
 	<string>google trans</string>
 	<key>LBDescription</key>
