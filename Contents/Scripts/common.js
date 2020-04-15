@@ -215,3 +215,17 @@ function makeActionCall(title, name, argument, returnItems = true, icon = 'font-
 function listItems(options) {
     return options.items;
 }
+
+const NO_RESPONSE = [{title: 'Server has no response', icon: '😵'}];
+
+/**
+ * View text in launchbar
+ *
+ * @param      {string}   title                        The title
+ * @param      {string}   subtitle                     The subtitle
+ * @param      {boolean}  [alwaysShowsSubtitle=false]  The always shows subtitle
+ * @return     {items}
+ */
+function viewText(title, subtitle, alwaysShowsSubtitle = false) {
+    return [{subtitle, title, alwaysShowsSubtitle}];
+}

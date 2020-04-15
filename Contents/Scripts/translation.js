@@ -5,7 +5,13 @@
  */
 function translate(text, from = 'auto', to = null) {
     if (!to) to = Action.preferences.preferedLanguage || 'en';
+
     const response = HTTP.getJSON(createRequestOptions(text, from, to));
+
+    if (!response.data) {
+        return NO_RESPONSE;
+    }
+
     return format(response.data).concat(
         otherLanguages(text)
     );
@@ -50,34 +56,26 @@ function format(response) {
  * @return     {items}
  */
 function formatTranslations(translation, source_lang = '') {
-    const items = [{title: translation[0][0]}];
-
-    if (translation[1]) {
-        const pronunciation = translation[1];
-        items.push(...formatPronunciation(pronunciation));
-    }
-
-    return items;
-}
-
-/**
- * Format pronunciation
- *
- * @param      {array}  pronunciation  The pronunciation
- * @return     {items}
- */
-function formatPronunciation(pronunciation) {
     const items = [];
 
-    if (pronunciation[2]) {
-        items.push({title: pronunciation[2]});
-    }
+    translation.forEach((item, index, origin) => {
+        const [trans, source, target_pronunciation, source_pronunciation] = item;
+        if (trans) {
+            items.push({
+                alwaysShowsSubtitle: source ? true : undefined,
+                subtitle: source || undefined,
+                title: trans
+            });
+        }
 
-    if (pronunciation[3]) {
-        items.push({
-            title: pronunciation[3]
-        });
-    }
+        if (target_pronunciation) {
+            items.push({title: target_pronunciation});
+        }
+
+        if (source_pronunciation) {
+            items.push({title: source_pronunciation});
+        }
+    });
 
     return items;
 }
