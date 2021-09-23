@@ -4,10 +4,10 @@
  * @param      {string}  text            The text
  * @param      {string}  [from='en']     The source language
  * @param      {string}  [to='zh']       The target language
- * @param      {string}  [client='gtx']  The client
+ * @param      {string}  [client='at']  The client
  */
-function createRequestOptions(text, from = 'auto', to = 'en', client= 'gtx') {
-    return `https://translate.google.com/translate_a/single?client=${client}&sl=${from}&tl=${to}&hl=${to}&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&dt=dj&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&q=${encodeURIComponent(text)}`;
+function createRequestOptions(text, from = 'auto', to = 'en', client= 'at') {
+    return `https://translate.google.com/translate_a/single?client=${client}&sl=${from}&tl=${to}&hl=${to}&dt=t&q=${encodeURIComponent(text)}`;
 }
 
 /**
